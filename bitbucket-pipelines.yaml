@@ -1,0 +1,17 @@
+image: ubuntu
+
+pipelines:
+  default:
+    - step:
+        name: Terraform Validate and Plan
+        image: hashicorp/terraform:latest
+        script:
+          - terraform init
+          - terraform validate
+          - terraform plan
+    
+    - step:
+        name: Terraform Apply
+        script:
+          - terraform apply tfplan
+        trigger: manual      
